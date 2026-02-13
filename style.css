@@ -107,24 +107,25 @@ main{
 /* 1. Ajustes del Contenedor Principal */
 .Contenedor-principal {
     display: grid;
-    grid-template-columns: repeat(20, 1fr); /* 6 columnas */
-    grid-auto-rows: 350px;
-    gap: 30px;
-    width: 95%;
+    /* 12 columnas dan mucha más libertad para tamaños tipo F1 */
+    grid-template-columns: repeat(12, 1fr); 
+    grid-auto-rows: 250px; /* Reducimos altura para que se vea más estético */
+    gap: 20px;
+    width: calc(95% - 300px); /* Ajuste dinámico por el margen del aside */
     max-width: 2200px;
     min-height: 100vh;
-    margin-left: 300px; /* Tu espacio para el aside */
+    margin-left: 300px; 
     perspective: 1000px;
-    padding: 50px 0;
+    padding: 50px 20px;
 
-    /* --- LÍNEAS GUÍA (Fusión de tus dos ideas) --- */
+    /* --- LÍNEAS GUÍA SINCRONIZADAS --- */
     background-image: 
-        linear-gradient(to right, #f0f0f0 1px, transparent 1px), /* Verticales */
-        linear-gradient(to bottom, #f0f0f0 1px, transparent 1px); /* Horizontales */
+        linear-gradient(to right, rgba(240,240,240,0.3) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(240,240,240,0.3) 1px, transparent 1px);
     
-    /* 100% / 6 columnas = 16.66% */
-    /* 350px de fila + 30px de gap = 380px */
-    background-size: 16.66% 380px; 
+    /* 100% / 12 columnas = 8.33% */
+    /* 250px de fila + 20px de gap = 270px */
+    background-size: 8.333% 270px; 
 }
 
 /* 2. Estructura de la Tarjeta */
@@ -132,8 +133,8 @@ main{
     cursor: pointer;
     background-color: transparent;
     border-radius: 12px;
-    width: 100%;  /* Esto obliga a la tarjeta a llenar TODO el espacio (de la 1 a la 4) */
-    height: 100%; /* Lo mismo para el alto */
+    width: 100%;  /* Se estira al ancho de las columnas asignadas */
+    height: 100%; /* Se estira al alto de las filas asignadas */
     display: block;
 }
 
@@ -153,18 +154,14 @@ main{
 /* 3. Estilo de las Caras (Frente y Detrás) */
 .front, .back {
     position: absolute;
-    top: O;
+    top: 0; 
     left: 0;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Oculta la espalda de la cara */
+    backface-visibility: hidden;
     border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
-
 /* Cara Frontal (Imagen) */
 .front img {
     width: 100%;
@@ -195,10 +192,22 @@ main{
     text-align: center;
 }
 
-/* 4. Distribución del Grid y Colores de fondo */
-.Contenedor-1 { grid-column: 1/5; grid-row: 1 / 3; }
-.Contenedor-2 { grid-column: 4 / 7; grid-row: 1 / 2; }
-.Contenedor-3 { grid-column: 4 / 7; grid-row: 2 / 3; }
+.Contenedor-1 { 
+    grid-column: 1 / 6; 
+    grid-row: 1 / span 4; 
+}
+
+/* Foto a la derecha (Empieza en la 5 para no chocar con la anterior) */
+.Contenedor-2 { 
+    grid-column: 6 / 10; 
+    grid-row: 1 / span 3; 
+}
+
+/* Foto debajo de la anterior */
+.Contenedor-3 { 
+    grid-column: 6 / 11; 
+    grid-row: 4/ 6; 
+}
 
 /* Colores específicos para la parte de atrás */
 .Contenedor-1 .back { background-color: var(--segundocolor); } /* Azul Junior */

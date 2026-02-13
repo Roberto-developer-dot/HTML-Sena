@@ -214,3 +214,18 @@ main{
 .Contenedor-2 .back { background-color: var(--segundocolor); } /* Rojo Junior */
 .Contenedor-3 .back { background-color: var(--segundocolor); }    /* Gris oscuro/Negro */
 
+@media (max-width: 768px) {
+    .Contenedor-principal {
+        margin-left: 0; /* Quitamos el hueco del aside en el celular */
+        width: 100%;
+        grid-template-columns: 1fr; /* Una sola columna */
+        background-image: none; /* Quitamos líneas en el celular */
+    }
+
+    /* En el celular, todas las fotos se apilan */
+    .Contenedor-1, .Contenedor-2, .Contenedor-3 {
+        grid-column: 1 / -1 !important;
+        grid-row: auto !important;
+        height: 300px;
+    }
+}

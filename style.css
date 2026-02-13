@@ -12,9 +12,9 @@ body {
     --segundocolor: #fff;
     
     --coloropcionalydeletras: #003366;
-    --colorletras2: #fff 
+    --colorletras2: #fff;
     --letra: 'Oswald', sans-serif;
-    --partetrasera: black
+    --partetrasera: black;
     
 }
 header {
@@ -214,18 +214,26 @@ main{
 .Contenedor-2 .back { background-color: var(--segundocolor); } /* Rojo Junior */
 .Contenedor-3 .back { background-color: var(--segundocolor); }    /* Gris oscuro/Negro */
 
-@media (max-width: 768px) {
-    .Contenedor-principal {
-        margin-left: 0; /* Quitamos el hueco del aside en el celular */
+/* ... aquí termina tu código actual (lo de .Contenedor-3 .back) ... */
+
+/* --- ABAJO EMPIEZA LO NUEVO (Aparte) --- */
+@media screen and (max-width: 1024px) {
+    
+    body .Contenedor-principal {
+        margin-left: 0;
         width: 100%;
-        grid-template-columns: 1fr; /* Una sola columna */
-        background-image: none; /* Quitamos líneas en el celular */
+        grid-template-columns: 1fr; 
+        grid-auto-rows: auto;
+        background-image: none;
+        padding: 20px;
     }
 
-    /* En el celular, todas las fotos se apilan */
-    .Contenedor-1, .Contenedor-2, .Contenedor-3 {
-        grid-column: 1 / -1 !important;
-        grid-row: auto !important;
-        height: 300px;
+    .Contenedor-principal .Contenedor-1, 
+    .Contenedor-principal .Contenedor-2, 
+    .Contenedor-principal .Contenedor-3 {
+        grid-column: 1 / -1; 
+        grid-row: auto;      
+        height: 350px;       
+        margin-bottom: 20px;
     }
 }
